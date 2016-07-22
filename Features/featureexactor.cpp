@@ -62,10 +62,10 @@ bool WriteSiftPointList(const QString &o_filename, QVector<SiftKeypoint> &keyPoi
 	QFile f(o_filename);
 	//ofstream f(o_filename.c_str(), ios::binary);
 	if (!f.open(QIODevice::WriteOnly)) return false;
-	size_t nbPoints = keyPoints.size(),
+	int nbPoints = keyPoints.size(),
 		dimension = SIFT_DESCRIPTOR_SIZE;
-	f.write((char*)&nbPoints, sizeof(size_t));
-	f.write((char*)&dimension, sizeof(size_t));
+	f.write((char*)&nbPoints, sizeof(int));
+	f.write((char*)&dimension, sizeof(int));
 	float * pd = &(describe[0]);
 	for (int i = 0; i < nbPoints; i++, pd += 128)
 	{
@@ -201,10 +201,10 @@ bool ReadSiftPointList(const QString &i_filename, QVector<SiftKeypoint> &keyPoin
 	QFile f(i_filename);
 	if (!f.open(QIODevice::ReadOnly)) return false;
 
-	size_t nbPoints,
+	int nbPoints,
 		dimension;
-	f.read((char*)&nbPoints, sizeof(size_t));
-	f.read((char*)&dimension, sizeof(size_t));
+	f.read((char*)&nbPoints, sizeof(int));
+	f.read((char*)&dimension, sizeof(int));
 
 	keyPoints.resize(nbPoints);
 	descriptor.resize(nbPoints*SIFT_DESCRIPTOR_SIZE);
@@ -255,9 +255,9 @@ bool ransac(QVector<PointMatch> &vecMatch, QVector<V2I> &vecIndex)
 	//vector<DMatch> nm;
 	QVector<PointMatch> nms;
 	QVector<V2I> nis;
-	for (size_t i = 0; i < vecMatch.size(); ++i)
+	for (int i = 0; i < vecMatch.size(); ++i)
 	{
-		if (status.at<uchar>((int)i, 0) != 0)
+		if (status.at<uchar>(i, 0) != 0)
 		{
 			nms.push_back(vecMatch[i]);
 			nis.push_back(vecIndex[i]);
@@ -290,29 +290,31 @@ FeatureExactor::~FeatureExactor()
 
 bool FeatureExactor::featureExactSave(int chunk_size, size_t subcnt, bool buildRelation)
 {
+	if (image_path_list_.size() == 0)
+		return false;
 #pragma region 特征提取及保存
 	using namespace cv;
-	const size_t bat_count = 64;
+	const int bat_count = 100;
 	vector<SiftFeature> vecFea(image_path_list_.size());//保存采样后特征
-	size_t fileIndex = 0;//索引
-	size_t cnt = image_path_list_.size() / bat_count;//将所有影像分成100张每份
-	size_t rm = image_path_list_.size() - cnt * bat_count;
-	for (size_t i = 0; i < cnt; ++i)
+	int fileIndex = 0;//索引
+	int cnt = image_path_list_.size() / bat_count;//将所有影像分成100张每份
+	int rm = image_path_list_.size() - cnt * bat_count;
+	for (int i = 0; i < cnt; ++i)
 	{
 		vector<Mat> vecImgs(bat_count);
 		vector<SiftFeature> vecFeas(bat_count);
 		QVector<QString> vecFile(bat_count);
-		for (size_t j = 0; j < bat_count; ++j)
+		for (int j = 0; j < bat_count; ++j)
 		{
 			vecFile[j] = image_path_list_.at(i * bat_count + j);
 		}
-		yt::multiCall(LoadImage, vecFile.toStdVector(), vecImgs);//多线程载入影像
+		yt::multiCall(qm::LoadImage, vecFile.toStdVector(), vecImgs);//多线程载入影像
 
 		if (buildRelation)//需要建立关系时的特征提取
 		{
 			QVector<Mat> downImgs(bat_count);
 			auto it = vecImgs.begin();
-			for (size_t j = 0; j < bat_count; ++j)
+			for (int j = 0; j < bat_count; ++j)
 			{
 				double scale = max(vecImgs[j].cols, vecImgs[j].rows) / 1024.0;
 				Size newsize(vecImgs[j].cols, vecImgs[j].rows);
@@ -342,17 +344,17 @@ bool FeatureExactor::featureExactSave(int chunk_size, size_t subcnt, bool buildR
 	vector<cv::Mat> vecImgs(rm);
 	vector<SiftFeature> vecFeas(rm);
 	QVector<QString> vecFile(rm);
-	for (size_t i = 0; i < rm;++i)
+	for (int i = 0; i < rm;++i)
 	{
 		vecFile[i] = image_path_list_[bat_count * cnt + i];
 	}
-	yt::multiCall(LoadImage, vecFile.toStdVector(), vecImgs);
+	yt::multiCall(qm::LoadImage, vecFile.toStdVector(), vecImgs);
 
 	if (buildRelation)
 	{
 		QVector<Mat> downImgs(vecFile.size());
 		auto it = vecImgs.begin();
-		for (size_t i = 0; i < vecFile.size(); ++i)
+		for (int i = 0; i < vecFile.size(); ++i)
 		{
 			double scale = max(vecImgs[i].cols, vecImgs[i].rows) / 1024.0;
 			Size newsize(vecImgs[i].cols, vecImgs[i].rows);
@@ -390,9 +392,9 @@ bool FeatureExactor::featureExactSave(int chunk_size, size_t subcnt, bool buildR
 		QVector<Pair> vecPair;
 		QVector<PointMatch> vecPm;
 		QVector<V2I> vecIndex;
-		for (size_t i = 0; i < image_path_list_.size() - 1; ++i)
+		for (int i = 0; i < image_path_list_.size() - 1; ++i)
 		{
-			for (size_t j = i + 1; j < image_path_list_.size(); ++j)
+			for (int j = i + 1; j < image_path_list_.size(); ++j)
 			{
 				featureMatch(qMakePair(vecFea[i], vecFea[j]), vecPm, vecIndex);
 				if (vecPm.size() > less_cnt)
@@ -416,7 +418,7 @@ bool FeatureExactor::featureExactSave(int chunk_size, size_t subcnt, bool buildR
 		//ofstream fout(yt::getDir(image_path_list_[0].toStdString()) + "\\GrapheHom.xml");
 		QVector<QDomElement> cples(vecPair.size());
 		QVector<QDomText> texts(vecPair.size());
-		for (size_t i = 0; i < vecPair.size(); ++i)
+		for (int i = 0; i < vecPair.size(); ++i)
 		{
 			cples[i] = doc.createElement("Cple");
 			QString text(vecPair[i].first);
@@ -528,7 +530,7 @@ bool FeatureExactor::featureMatch(const QPair<SiftFeature, SiftFeature> &pairImg
 		&keys2 = pairImg.second.keys;
 	const QVector<float> &d1 = pairImg.first.descriptors,
 		&d2 = pairImg.second.descriptors;
-	if (gpu_module_->IsInit() || gpu_module_->Init())
+	if (gpu_module_->Reload(4096))
 	{
 		SiftMatchGPU *matcher = gpu_module_->GetSiftMatcher();
 		//**********************GPU SIFT MATCHING*********************************
@@ -695,7 +697,7 @@ void featureMatchCV(const QPair<SiftFeature, SiftFeature> &pairImg,
 			matches.push_back(bg->at(0));
 	}
 	
-	for (size_t i = 0; i < matches.size(); ++i)
+	for (int i = 0; i < matches.size(); ++i)
 	{
 		Pt2dr p1,p2;
 		p1.x = keys1[matches[i].queryIdx].x;
@@ -709,7 +711,8 @@ void featureMatchCV(const QPair<SiftFeature, SiftFeature> &pairImg,
 
 bool FeatureExactor::featureMatchSave()
 {
-	
+	if (image_path_list_.size() == 0)
+		return false;
 	QString dir = QFileInfo(image_path_list_[0]).absolutePath();
 	QDomDocument doc;
 	QFile pair_xml(dir + "/GrapheHom.xml");
@@ -811,7 +814,7 @@ bool FeatureExactor::featureMatchSaves(const QPair<QString, QString> &a_pair, bo
 	QVector<V2I> nvecIndex(vecIndex.size());
 	auto itM = nvecMatch.begin();
 	auto itI = nvecIndex.begin();
-	for (size_t i = 0; i < vecMatch.size(); ++i)
+	for (int i = 0; i < vecMatch.size(); ++i)
 	{
 		itM->first = vecMatch[i].second;
 		itM++->second = vecMatch[i].first;

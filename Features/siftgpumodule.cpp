@@ -83,7 +83,13 @@ bool SiftGpuModule::Init(size_t pcnt_per_sub)
 	SiftGPU *sift=new SiftGPU(1);
 	SiftMatchGPU *matcher = new SiftMatchGPU(4096);
 #endif
+#ifdef _DEBUG
+	char * nargv[] = { "-fo", "-1", "-v", "1", "-cuda", "-tc", "100000" };
+#else
 	char * nargv[] = { "-fo", "-1", "-v", "0", "-cuda", "-tc", "100000" };
+#endif // _DEBUG
+
+	
 	int nargc = sizeof(nargv) / sizeof(char*);
 	if (pcnt_per_sub == 0)
 	{
