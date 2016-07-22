@@ -1,0 +1,20 @@
+﻿生成启动时间为 2016/7/18 22:46:07。
+     1>项目“E:\myc++\myqt\QuickMosaic\QuickMosaic\QuickMosaic.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I.\GeneratedFiles /I. /ID:\Qt\Qt5.5.1\5.5\msvc2013_64\include /I.\GeneratedFiles\Debug /ID:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore /ID:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui /ID:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtOpenGL /ID:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtWidgets /ID:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtXml /Zi /nologo /W1 /WX- /Od /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_CORE_LIB /D QT_GUI_LIB /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /D QT_XML_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt PointData.cpp quickmosaic.cpp
+         PointData.cpp
+         quickmosaic.cpp
+     1>quickmosaic.cpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         正在生成代码...
+       Link:
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"E:\myc++\myqt\QuickMosaic\x64\Debug\\QuickMosaic.exe" /NOLOGO /LIBPATH:D:\Qt\Qt5.5.1\5.5\msvc2013_64\lib qtmaind.lib Qt5Cored.lib Qt5Guid.lib Qt5OpenGLd.lib opengl32.lib glu32.lib Qt5Widgetsd.lib Qt5Xmld.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\myc++\myqt\QuickMosaic\x64\Debug\QuickMosaic.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\myc++\myqt\QuickMosaic\x64\Debug\QuickMosaic.lib" /MACHINE:X64 x64\Debug\moc_quickmosaic.obj
+         x64\Debug\qrc_quickmosaic.obj
+         x64\Debug\main.obj
+         x64\Debug\PointData.obj
+         x64\Debug\quickmosaic.obj
+         QuickMosaic.vcxproj -> E:\myc++\myqt\QuickMosaic\x64\Debug\QuickMosaic.exe
+     1>已完成生成项目“E:\myc++\myqt\QuickMosaic\QuickMosaic\QuickMosaic.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:02.36

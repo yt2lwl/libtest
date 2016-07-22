@@ -1,0 +1,14 @@
+﻿生成启动时间为 2016/7/20 23:09:03。
+     1>项目“E:\myc++\myqt\QuickMosaic\PosHandle\PosHandle.vcxproj”在节点 3 上(Rebuild 个目标)。
+     1>ClCompile:
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I.\GeneratedFiles /I. /ID:\Qt\Qt5.5.1\5.5\msvc2013_64\include /I.\GeneratedFiles\Release /ID:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore /nologo /W1 /WX- /O2 /D CODE_ANALYSIS /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_NO_DEBUG /D NDEBUG /D QT_CORE_LIB /D POSHANDLE_LIB /D _WINDLL /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /analyze /analyze:plugin"D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\\bin\localespc.dll" /errorReport:prompt   /analyze:quiet poshandle.cpp
+         poshandle.cpp
+       Link:
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"E:\myc++\myqt\QuickMosaic\x64\Release\\PosHandle.dll" /NOLOGO /LIBPATH:D:\Qt\Qt5.5.1\5.5\msvc2013_64\lib qtmain.lib Qt5Core.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"E:\myc++\myqt\QuickMosaic\x64\Release\PosHandle.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\myc++\myqt\QuickMosaic\x64\Release\PosHandle.lib" /MACHINE:X64 /DLL x64\Release\poshandle.obj
+            正在创建库 E:\myc++\myqt\QuickMosaic\x64\Release\PosHandle.lib 和对象 E:\myc++\myqt\QuickMosaic\x64\Release\PosHandle.exp
+         PosHandle.vcxproj -> E:\myc++\myqt\QuickMosaic\x64\Release\PosHandle.dll
+     1>已完成生成项目“E:\myc++\myqt\QuickMosaic\PosHandle\PosHandle.vcxproj”(Rebuild 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:18.49

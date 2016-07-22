@@ -1,0 +1,21 @@
+﻿生成启动时间为 2016/7/22 9:37:51。
+     1>项目“E:\myc++\myqt\QuickMosaic\Features\Features.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IE:\opensource\install\include /I.\GeneratedFiles /I. /ID:\Qt\Qt5.5.1\5.5\msvc2013_64\include /I.\GeneratedFiles\Debug /ID:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore /ID:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtXml /ID:\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtOpenGL /Zi /nologo /W1 /WX- /Od /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_CORE_LIB /D FEATURES_LIB /D QT_XML_LIB /D QT_OPENGL_LIB /D _WINDLL /Gm- /EHsc /MDd /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt featureexactor.cpp
+         featureexactor.cpp
+     1>E:\opensource\install\include\opencv2/core/mat.hpp(1965): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>E:\opensource\install\include\opencv2/core/persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>E:\opensource\install\include\opencv2/core/utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+       Link:
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"E:\myc++\myqt\QuickMosaic\x64\Debug\\Features.dll" /NOLOGO /LIBPATH:D:\Qt\Qt5.5.1\5.5\msvc2013_64\lib /LIBPATH:E:\opensource\install\lib qtmaind.lib Qt5Cored.lib Qt5Xmld.lib Qt5OpenGLd.lib opengl32.lib glu32.lib opencv_core310d.lib opencv_imgcodecs310d.lib YTsLibd.lib opencv_imgproc310d.lib opencv_calib3d310d.lib opencv_cudafeatures2d310d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\myc++\myqt\QuickMosaic\x64\Debug\Features.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\myc++\myqt\QuickMosaic\x64\Debug\Features.lib" /MACHINE:X64 /DLL x64\Debug\featureexactor.obj
+         x64\Debug\features.obj
+         x64\Debug\moc_siftgpumodule.obj
+         x64\Debug\PointMatch.obj
+         x64\Debug\roiwindow.obj
+         x64\Debug\siftgpumodule.obj
+         Features.vcxproj -> E:\myc++\myqt\QuickMosaic\x64\Debug\Features.dll
+     1>已完成生成项目“E:\myc++\myqt\QuickMosaic\Features\Features.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:03.35
